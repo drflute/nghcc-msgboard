@@ -2,8 +2,8 @@
 import os, requests, streamlit as st
 import pandas as pd
 # URL = 'https://script.google.com/macros/s/AKfycbynOv4uMZUt5IscBJGJLoHblkN28BYdaap7oUzmm2gVxYhoikjxpf86bk7ob9h05bSNmQ/exec'
-URL = 'https://script.google.com/macros/s/AKfycbwR2CIurvU4iK17AOCFRmC5WezpQHeTxzkKGupAbd1wDk4sOUw8tunagxGljO8gywmpkQ/exec'
-TOKEN  = 'set-a-random-long-token'
+# URL = 'https://script.google.com/macros/s/AKfycbwR2CIurvU4iK17AOCFRmC5WezpQHeTxzkKGupAbd1wDk4sOUw8tunagxGljO8gywmpkQ/exec'
+# TOKEN  = 'set-a-random-long-token'
 
 
 def send_message(name: str, message: str):
