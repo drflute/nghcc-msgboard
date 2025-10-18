@@ -116,6 +116,7 @@ name = st.text_input("稱呼 (可留白)")
 message = st.text_area("留言內容", height=100)
 # st.success('hahaha',icon="")
 if st.button("送出留言",type='primary'):
+    show_love()
     if not message.strip():
         st.error("請輸入留言內容。")
     else:
@@ -127,6 +128,5 @@ if st.button("送出留言",type='primary'):
             reload_message('new')
         except Exception as e:
             st.error(f"送出失敗：{e}")
-show_love()
 if st.button("載入留言"):
   reload_message('new')
