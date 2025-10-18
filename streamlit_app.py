@@ -93,7 +93,7 @@ def reload_message(mode):
                 ts = str(row["timestamp"])
                 user = row.get("name", "匿名")
                 msg = row.get("message", "")
-                if not msg=='':
+                if not msg=='匿名':
                   msg=f'{user}:{msg}'
                 with st.chat_message('user'):
                   if count % 2==0:
