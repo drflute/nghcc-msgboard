@@ -2,10 +2,33 @@
 import os, requests, streamlit as st
 import pandas as pd
 from streamlit import session_state as ss
+from streamlit.components.v1 import html as st_html 
 st.set_page_config(page_title='北門兒主退修會留言板', page_icon='💓', layout='wide')
 st.title('北門兒主退修會留言板')
 URL = st.secrets["collector_url"]
 TOKEN = st.secrets["collector_token"]
+def show_love():
+  st_html("""
+  <style>
+    .heart { position: fixed; top: -10px; font-size: 24px; color: #ff4b4b;
+             animation: fall 4s linear forwards; pointer-events:none; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+  </style>
+  <script>
+    function createHeart(){
+      const h=document.createElement('div');
+      h.className='heart';
+      h.textContent='❤️';
+      h.style.left = (Math.random()*100)+'vw';
+      h.style.fontSize = (16+Math.random()*32)+'px';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 4000);
+    }
+    // Start a stream of hearts
+    window.__heartInterval = window.__heartInterval || setInterval(createHeart, 200);
+  </script>
+  """, height=200, scrolling=False)  # height MUST be > 0
+
 def send_message(name: str, message: str):
     payload = {"name": name or "", "message": message or ""}
     params = {"token": TOKEN, "origin": "streamlit.app"}
@@ -99,10 +122,11 @@ if st.button("送出留言",type='primary'):
         try:
             send_message(name, message)
             st.success("已送出 ✅, 耶穌愛你~ 💓",icon="💓")
-            st.balloons()
+            # st.balloons()
+            
             reload_message('new')
         except Exception as e:
             st.error(f"送出失敗：{e}")
-
+show_love()
 if st.button("載入留言"):
   reload_message('new')
